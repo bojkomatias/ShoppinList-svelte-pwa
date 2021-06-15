@@ -48,7 +48,7 @@
     text-align: center;
     width: 70%;
     margin-left: 15%;
-    margin-top: 4rem;
+    margin-top: 3rem;
     display: grid;
     grid-template-columns: 2;
     gap: 4rem;
