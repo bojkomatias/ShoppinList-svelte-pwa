@@ -2770,12 +2770,74 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[2] = list[i].data;
-    	child_ctx[3] = list[i].link;
+    	child_ctx[3] = list[i].data;
+    	child_ctx[4] = list[i].link;
     	return child_ctx;
     }
 
-    // (15:4) {#if !!collection}
+    // (16:2) {#if Show}
+    function create_if_block_2(ctx) {
+    	let button0;
+    	let t1;
+    	let button1;
+    	let t3;
+    	let button2;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			button0 = element("button");
+    			button0.textContent = "Cyber Monday";
+    			t1 = space();
+    			button1 = element("button");
+    			button1.textContent = "Black Friday";
+    			t3 = space();
+    			button2 = element("button");
+    			button2.textContent = "Otras Ofertas";
+    			attr_dev(button0, "class", "custom-button svelte-t8ti4y");
+    			add_location(button0, file$2, 16, 4, 346);
+    			attr_dev(button1, "class", "custom-button svelte-t8ti4y");
+    			add_location(button1, file$2, 17, 4, 405);
+    			attr_dev(button2, "class", "custom-button svelte-t8ti4y");
+    			add_location(button2, file$2, 18, 4, 487);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, button0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, button1, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, button2, anchor);
+
+    			if (!mounted) {
+    				dispose = listen_dev(button1, "click", /*searchOffer*/ ctx[2], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(button0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(button1);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(button2);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2.name,
+    		type: "if",
+    		source: "(16:2) {#if Show}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (22:4) {#if !!collection}
     function create_if_block(ctx) {
     	let each_1_anchor;
     	let each_value = /*collection*/ ctx[0];
@@ -2836,14 +2898,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(15:4) {#if !!collection}",
+    		source: "(22:4) {#if !!collection}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:10) {#if link}
+    // (29:10) {#if link}
     function create_if_block_1(ctx) {
     	let a;
     	let button;
@@ -2854,16 +2916,17 @@ var app = (function () {
     			a = element("a");
     			button = element("button");
     			button.textContent = "Comprar";
-    			add_location(button, file$2, 22, 35, 673);
-    			attr_dev(a, "href", a_href_value = /*link*/ ctx[3]);
-    			add_location(a, file$2, 22, 20, 658);
+    			attr_dev(button, "class", "svelte-t8ti4y");
+    			add_location(button, file$2, 28, 35, 849);
+    			attr_dev(a, "href", a_href_value = /*link*/ ctx[4]);
+    			add_location(a, file$2, 28, 20, 834);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
     			append_dev(a, button);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*collection*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[3])) {
+    			if (dirty & /*collection*/ 1 && a_href_value !== (a_href_value = /*link*/ ctx[4])) {
     				attr_dev(a, "href", a_href_value);
     			}
     		},
@@ -2876,106 +2939,80 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(23:10) {#if link}",
+    		source: "(29:10) {#if link}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (16:6) {#each collection as { data, link }}
+    // (23:6) {#each collection as { data, link }}
     function create_each_block(ctx) {
-    	let div4;
-    	let pre;
-    	let t0_value = /*link*/ ctx[3] + "";
+    	let div3;
+    	let div0;
+    	let t0_value = /*data*/ ctx[3].productName + "";
     	let t0;
     	let t1;
-    	let div0;
-    	let t2_value = /*data*/ ctx[2].productName + "";
+    	let div1;
+    	let t2_value = /*data*/ ctx[3].category + "";
     	let t2;
     	let t3;
-    	let div1;
-    	let t4_value = /*data*/ ctx[2].category + "";
-    	let t4;
-    	let t5;
     	let div2;
+    	let t4;
+    	let t5_value = /*data*/ ctx[3].price + "";
+    	let t5;
     	let t6;
-    	let t7_value = /*data*/ ctx[2].price + "";
     	let t7;
-    	let t8;
-    	let div3;
-    	let t9;
-    	let t10_value = /*data*/ ctx[2].stock + "";
-    	let t10;
-    	let t11;
-    	let t12;
-    	let if_block = /*link*/ ctx[3] && create_if_block_1(ctx);
+    	let if_block = /*link*/ ctx[4] && create_if_block_1(ctx);
 
     	const block = {
     		c: function create() {
-    			div4 = element("div");
-    			pre = element("pre");
+    			div3 = element("div");
+    			div0 = element("div");
     			t0 = text(t0_value);
     			t1 = space();
-    			div0 = element("div");
+    			div1 = element("div");
     			t2 = text(t2_value);
     			t3 = space();
-    			div1 = element("div");
-    			t4 = text(t4_value);
-    			t5 = space();
     			div2 = element("div");
-    			t6 = text("U$D : ");
-    			t7 = text(t7_value);
-    			t8 = space();
-    			div3 = element("div");
-    			t9 = text("Stock: ");
-    			t10 = text(t10_value);
-    			t11 = space();
+    			t4 = text("U$D : ");
+    			t5 = text(t5_value);
+    			t6 = space();
     			if (if_block) if_block.c();
-    			t12 = space();
-    			add_location(pre, file$2, 17, 10, 457);
-    			add_location(div0, file$2, 18, 10, 486);
-    			add_location(div1, file$2, 19, 10, 527);
-    			add_location(div2, file$2, 20, 10, 565);
-    			add_location(div3, file$2, 21, 10, 606);
-    			add_location(div4, file$2, 16, 8, 440);
+    			t7 = space();
+    			add_location(div0, file$2, 25, 10, 704);
+    			add_location(div1, file$2, 26, 10, 745);
+    			add_location(div2, file$2, 27, 10, 783);
+    			attr_dev(div3, "class", "prod-container svelte-t8ti4y");
+    			add_location(div3, file$2, 23, 8, 637);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, pre);
-    			append_dev(pre, t0);
-    			append_dev(div4, t1);
-    			append_dev(div4, div0);
-    			append_dev(div0, t2);
-    			append_dev(div4, t3);
-    			append_dev(div4, div1);
-    			append_dev(div1, t4);
-    			append_dev(div4, t5);
-    			append_dev(div4, div2);
-    			append_dev(div2, t6);
-    			append_dev(div2, t7);
-    			append_dev(div4, t8);
-    			append_dev(div4, div3);
-    			append_dev(div3, t9);
-    			append_dev(div3, t10);
-    			append_dev(div4, t11);
-    			if (if_block) if_block.m(div4, null);
-    			append_dev(div4, t12);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div0, t0);
+    			append_dev(div3, t1);
+    			append_dev(div3, div1);
+    			append_dev(div1, t2);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
+    			append_dev(div2, t4);
+    			append_dev(div2, t5);
+    			append_dev(div3, t6);
+    			if (if_block) if_block.m(div3, null);
+    			append_dev(div3, t7);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*collection*/ 1 && t0_value !== (t0_value = /*link*/ ctx[3] + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*collection*/ 1 && t2_value !== (t2_value = /*data*/ ctx[2].productName + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*collection*/ 1 && t4_value !== (t4_value = /*data*/ ctx[2].category + "")) set_data_dev(t4, t4_value);
-    			if (dirty & /*collection*/ 1 && t7_value !== (t7_value = /*data*/ ctx[2].price + "")) set_data_dev(t7, t7_value);
-    			if (dirty & /*collection*/ 1 && t10_value !== (t10_value = /*data*/ ctx[2].stock + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*collection*/ 1 && t0_value !== (t0_value = /*data*/ ctx[3].productName + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*collection*/ 1 && t2_value !== (t2_value = /*data*/ ctx[3].category + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*collection*/ 1 && t5_value !== (t5_value = /*data*/ ctx[3].price + "")) set_data_dev(t5, t5_value);
 
-    			if (/*link*/ ctx[3]) {
+    			if (/*link*/ ctx[4]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
     					if_block = create_if_block_1(ctx);
     					if_block.c();
-    					if_block.m(div4, t12);
+    					if_block.m(div3, t7);
     				}
     			} else if (if_block) {
     				if_block.d(1);
@@ -2983,7 +3020,7 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div4);
+    			if (detaching) detach_dev(div3);
     			if (if_block) if_block.d();
     		}
     	};
@@ -2992,7 +3029,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(16:6) {#each collection as { data, link }}",
+    		source: "(23:6) {#each collection as { data, link }}",
     		ctx
     	});
 
@@ -3001,62 +3038,65 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let div1;
-    	let button;
-    	let t1;
+    	let t;
     	let div0;
-    	let mounted;
-    	let dispose;
-    	let if_block = !!/*collection*/ ctx[0] && create_if_block(ctx);
+    	let if_block0 = /*Show*/ ctx[1] && create_if_block_2(ctx);
+    	let if_block1 = !!/*collection*/ ctx[0] && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
-    			button = element("button");
-    			button.textContent = "Black Friday (20% Off)";
-    			t1 = space();
+    			if (if_block0) if_block0.c();
+    			t = space();
     			div0 = element("div");
-    			if (if_block) if_block.c();
-    			add_location(button, file$2, 12, 2, 289);
-    			add_location(div0, file$2, 13, 2, 357);
-    			attr_dev(div1, "class", "container svelte-hpnljy");
-    			add_location(div1, file$2, 11, 0, 262);
+    			if (if_block1) if_block1.c();
+    			add_location(div0, file$2, 20, 2, 554);
+    			attr_dev(div1, "class", "container svelte-t8ti4y");
+    			add_location(div1, file$2, 14, 0, 303);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
-    			append_dev(div1, button);
-    			append_dev(div1, t1);
+    			if (if_block0) if_block0.m(div1, null);
+    			append_dev(div1, t);
     			append_dev(div1, div0);
-    			if (if_block) if_block.m(div0, null);
-
-    			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*searchOffer*/ ctx[1], false, false, false);
-    				mounted = true;
-    			}
+    			if (if_block1) if_block1.m(div0, null);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!!/*collection*/ ctx[0]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
+    			if (/*Show*/ ctx[1]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block(ctx);
-    					if_block.c();
-    					if_block.m(div0, null);
+    					if_block0 = create_if_block_2(ctx);
+    					if_block0.c();
+    					if_block0.m(div1, t);
     				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (!!/*collection*/ ctx[0]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block(ctx);
+    					if_block1.c();
+    					if_block1.m(div0, null);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
-    			if (if_block) if_block.d();
-    			mounted = false;
-    			dispose();
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -3075,8 +3115,10 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("ShoppingList", slots, []);
     	let { collection } = $$props;
+    	let Show = true;
 
     	const searchOffer = async () => {
+    		$$invalidate(1, Show = false);
     		const res = await fetch(`https://pouncing-mire-firewall.glitch.me/sales/20`);
     		const response = await res.json();
     		$$invalidate(0, collection = response.data);
@@ -3092,17 +3134,18 @@ var app = (function () {
     		if ("collection" in $$props) $$invalidate(0, collection = $$props.collection);
     	};
 
-    	$$self.$capture_state = () => ({ collection, searchOffer });
+    	$$self.$capture_state = () => ({ collection, Show, searchOffer });
 
     	$$self.$inject_state = $$props => {
     		if ("collection" in $$props) $$invalidate(0, collection = $$props.collection);
+    		if ("Show" in $$props) $$invalidate(1, Show = $$props.Show);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [collection, searchOffer];
+    	return [collection, Show, searchOffer];
     }
 
     class ShoppingList extends SvelteComponentDev {
@@ -3138,35 +3181,122 @@ var app = (function () {
     const file$1 = "src\\ProductView.svelte";
 
     function create_fragment$1(ctx) {
-    	let div;
-    	let pre;
-    	let t_value = /*product*/ ctx[0].productName + "";
-    	let t;
+    	let section;
+    	let div0;
+    	let p0;
+    	let t1;
+    	let t2_value = /*product*/ ctx[0].productName + "";
+    	let t2;
+    	let t3;
+    	let div1;
+    	let p1;
+    	let t5;
+    	let t6_value = /*product*/ ctx[0].category + "";
+    	let t6;
+    	let t7;
+    	let div2;
+    	let p2;
+    	let t9;
+    	let t10_value = /*product*/ ctx[0].price + "";
+    	let t10;
+    	let t11;
+    	let t12;
+    	let div3;
+    	let p3;
+    	let t14;
+    	let t15_value = /*product*/ ctx[0].stock + "";
+    	let t15;
+    	let t16;
+    	let t17;
+    	let button;
 
     	const block = {
     		c: function create() {
-    			div = element("div");
-    			pre = element("pre");
-    			t = text(t_value);
-    			add_location(pre, file$1, 14, 2, 335);
-    			attr_dev(div, "class", "container svelte-hpnljy");
-    			add_location(div, file$1, 13, 0, 308);
+    			section = element("section");
+    			div0 = element("div");
+    			p0 = element("p");
+    			p0.textContent = "Producto:";
+    			t1 = space();
+    			t2 = text(t2_value);
+    			t3 = space();
+    			div1 = element("div");
+    			p1 = element("p");
+    			p1.textContent = "Categoria:";
+    			t5 = space();
+    			t6 = text(t6_value);
+    			t7 = space();
+    			div2 = element("div");
+    			p2 = element("p");
+    			p2.textContent = "Precio:";
+    			t9 = space();
+    			t10 = text(t10_value);
+    			t11 = text(" U$D");
+    			t12 = space();
+    			div3 = element("div");
+    			p3 = element("p");
+    			p3.textContent = "Stock:";
+    			t14 = space();
+    			t15 = text(t15_value);
+    			t16 = text(" unidades");
+    			t17 = space();
+    			button = element("button");
+    			button.textContent = "Agregar al Carrito";
+    			add_location(p0, file$1, 16, 4, 369);
+    			attr_dev(div0, "class", "svelte-w4e23h");
+    			add_location(div0, file$1, 15, 2, 358);
+    			add_location(p1, file$1, 20, 4, 437);
+    			attr_dev(div1, "class", "svelte-w4e23h");
+    			add_location(div1, file$1, 19, 2, 426);
+    			add_location(p2, file$1, 24, 4, 503);
+    			attr_dev(div2, "class", "svelte-w4e23h");
+    			add_location(div2, file$1, 23, 2, 492);
+    			add_location(p3, file$1, 28, 4, 567);
+    			attr_dev(div3, "class", "svelte-w4e23h");
+    			add_location(div3, file$1, 27, 2, 556);
+    			attr_dev(button, "class", "svelte-w4e23h");
+    			add_location(button, file$1, 31, 2, 624);
+    			attr_dev(section, "class", "container svelte-w4e23h");
+    			add_location(section, file$1, 13, 0, 308);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, pre);
-    			append_dev(pre, t);
+    			insert_dev(target, section, anchor);
+    			append_dev(section, div0);
+    			append_dev(div0, p0);
+    			append_dev(div0, t1);
+    			append_dev(div0, t2);
+    			append_dev(section, t3);
+    			append_dev(section, div1);
+    			append_dev(div1, p1);
+    			append_dev(div1, t5);
+    			append_dev(div1, t6);
+    			append_dev(section, t7);
+    			append_dev(section, div2);
+    			append_dev(div2, p2);
+    			append_dev(div2, t9);
+    			append_dev(div2, t10);
+    			append_dev(div2, t11);
+    			append_dev(section, t12);
+    			append_dev(section, div3);
+    			append_dev(div3, p3);
+    			append_dev(div3, t14);
+    			append_dev(div3, t15);
+    			append_dev(div3, t16);
+    			append_dev(section, t17);
+    			append_dev(section, button);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*product*/ 1 && t_value !== (t_value = /*product*/ ctx[0].productName + "")) set_data_dev(t, t_value);
+    			if (dirty & /*product*/ 1 && t2_value !== (t2_value = /*product*/ ctx[0].productName + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*product*/ 1 && t6_value !== (t6_value = /*product*/ ctx[0].category + "")) set_data_dev(t6, t6_value);
+    			if (dirty & /*product*/ 1 && t10_value !== (t10_value = /*product*/ ctx[0].price + "")) set_data_dev(t10, t10_value);
+    			if (dirty & /*product*/ 1 && t15_value !== (t15_value = /*product*/ ctx[0].stock + "")) set_data_dev(t15, t15_value);
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(section);
     		}
     	};
 
